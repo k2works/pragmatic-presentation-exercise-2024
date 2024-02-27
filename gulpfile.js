@@ -2,6 +2,8 @@ const { series, parallel, watch, src, dest } = require("gulp");
 const { default: rimraf } = require("rimraf");
 const browserSync = require('browser-sync').create();
 const shell = require('gulp-shell');
+const fs = require("fs");
+const path = require("path");
 
 const asciidoctor = {
   clean: async (cb) => {
@@ -52,28 +54,33 @@ const asciidoctor = {
     watch("./public/**/*.html").on("change", browserSync.reload);
     cb();
   },
-}
+};
 
 const marp = {
   build: (cb) => {
-    const { marpCli } = require('@marp-team/marp-cli')
+    const { marpCli } = require("@marp-team/marp-cli");
     const inputRootDir = "./docs/slides";
     const outputRootDir = "./public/docs/slides";
 
-    marpCli([
-      `${inputRootDir}/PITCHME.md`,
-      "--html",
-      "--output",
-      `${outputRootDir}/index.html`,
-    ])
-      .then((exitStatus) => {
-        if (exitStatus > 0) {
-          console.error(`Failure (Exit status: ${exitStatus})`);
-        } else {
-          console.log("Success");
-        }
-      })
-      .catch(console.error);
+    fs.readdirSync(inputRootDir).forEach((file) => {
+      if (path.extname(file) === ".md") {
+        const filePath = path.join(inputRootDir, file);
+        const outputFilePath = path.join(
+          outputRootDir,
+          path.basename(file, ".md") + ".html"
+        );
+
+        marpCli([filePath, "--html", "--output", outputFilePath])
+          .then((exitStatus) => {
+            if (exitStatus > 0) {
+              console.error(`Failure (Exit status: ${exitStatus})`);
+            } else {
+              console.log("Success");
+            }
+          })
+          .catch(console.error);
+      }
+    });
 
     src(`${inputRootDir}/images/*.*`).pipe(dest(`${outputRootDir}/images`));
 
@@ -86,8 +93,8 @@ const marp = {
   watch: (cb) => {
     watch("./docs/slides/**/*.md", marp.build);
     cb();
-  }
-}
+  },
+};
 
 const webpack = {
   clean: async (cb) => {
