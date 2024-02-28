@@ -29,6 +29,8 @@ marp: true
 
 ## 実践プログラマーとは?
 
+---
+
 ![](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/tpp20.jpg)
 
 ---
@@ -119,7 +121,7 @@ GitHub Copilot
 
 - [リファクタリング](https://github.com/k2works/application_programing_excercise_2022/commits/take14/)
 
-- [ドキュメンテーション](https://github.com/k2works/application_programing_excercise_2022/blob/take15/docs/index.adoc)
+- [ドキュメンテーション](https://application-programing-excercise-2022-git-take15-k2works.vercel.app/docs)
 
 ---
 
