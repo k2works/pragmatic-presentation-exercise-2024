@@ -130,3 +130,19 @@
 >
 > エリック・エバンスのドメイン駆動設計
 
+
+## 大規模な構造
+
+> 「大規模な構造」は、システムをおおよその構造から議論し、理解できるようにするための言語である。
+>
+> エリック・エバンスのドメイン駆動設計
+
+### 進化する秩序(Evolving Order)
+
+### システムのメタファ(System Metaphor)
+
+### 責務のレイヤ(Responsibility Layers)
+
+### 知識レベル(Knowledge Level)
+
+### 脱着可能なコンポーネントのフレームワーク(Pluggable Component Framework)
