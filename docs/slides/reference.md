@@ -203,7 +203,31 @@
 >
 > 実践ドメイン駆動設計
 
+![ContextMap](./images/demo_ContextMap.png)
 
+```plantuml
+@startuml
+
+title: ContextMap
+
+skinparam componentStyle uml2
+
+component [CargoBookingContext]
+component [VoyagePlanningContext]
+component [LocationContext]
+
+[CargoBookingContext]<-->[VoyagePlanningContext] : Shared Kernel
+
+interface "Upstream-Downstream" as CargoBookingContext_to_LocationContext
+[LocationContext] --> CargoBookingContext_to_LocationContext : OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
+CargoBookingContext_to_LocationContext <.. [CargoBookingContext] : consume
+
+interface "Upstream-Downstream" as VoyagePlanningContext_to_LocationContext
+[LocationContext] --> VoyagePlanningContext_to_LocationContext : OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
+VoyagePlanningContext_to_LocationContext <.. [VoyagePlanningContext] : consume
+
+@enduml
+```
 
 
 # 達人プログラマー

@@ -14,6 +14,391 @@
 >
 > — 達人プログラマー 熟達に向けたあなたの旅（第2版）
 
+> なぜ論理思考が必要なのか
+> 1. 情緒に流されやすい判断や行動を防ぎ、自分の頭で考えて、「正しい結論を導く」ことができること。
+> 1. 文化の同一性に頼らず、どの民族にも通用する、「正しいコミュニケーションができること」こと。
+> 1. 「発想を助け、課題の検討・解決に役立つ」こと。
+>
+> わかる。、使える「論理思考」の本　後正武
+
+## 論理の基本
+
+> １つのメッセージ（結論）は、必ず2つ以上のサブ・メッセージ（要因）でサポートされてるため、論理は、底辺に行くほど広いピラミッド状に組み上げられる。
+>
+> わかる。、使える「論理思考」の本　後正武
+
+1. 論理の基本単位は、単語ではなく主語・述語で組み上げるメッセージである。
+1. メッセージを組み上げる基本構造には「演繹」と「帰納」という2つの方法がある。
+1. 上位のメッセージと、それをサポートする下位のサブ・メッセージは、結論と要因、あるいは総合と部分の関係にある（メッセージの上下関係）
+1. 上位のメッセージを支える下位のメッセージは、それらを総合すると、モレや重複がないこと（水平関係）
+1. 全体を支える最下部のメッセージは、事実、またはそれに近い疑いようのないメッセージ（蓋然性の高いメッセージ）であること
+
+```plantuml
+@startuml
+
+title 論理の基本
+
+abstract "論理" as A {
+  + 主語
+  + 述語
+}
+
+interface "メッセージ" as B {
+  + 演繹()
+  + 帰納()
+}
+
+class "結論" as C {
+}
+
+class "要因" as D {
+}
+
+B <|-- A
+A <|- C
+A <|- D
+C "1" <-- "*" D
+D *- D
+
+@enduml
+```
+
+
+## 論理の基本構造
+
+Deduction(演繹)は、前提となる正しいメッセージ（一般論）がまずあり、それを個別の事象に適用して、正しい主張・答を引き出す方法で「一般論」から「個別論」へという構造になっている
+
+Induction(帰納)は、たくさんの個別の事象や主張を集めて、より一般的に通用する共通のメッセージを導き出す方法で「個別論」から「一般論」へという構造になっている
+
+```plantuml
+@startuml
+
+title 論理の基本構造(演繹)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C
+
+A <|-- B
+A <|-- C
+B -> C : 演繹
+
+@enduml
+```
+
+```plantuml
+@startuml
+
+title 論理の基本構造(帰納)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C
+
+class "事象" as D
+
+class "事実" as E
+
+A <|-- B
+A <|-- C
+C -> B : 帰納
+
+C "1" *-- "*" D 
+
+C "1" *-- "*" E 
+
+@enduml
+```
+
+```plantuml
+@startuml
+
+title 論理の基本構造(ボトムアップ)
+
+class "一般論" as A
+
+class "個別論" as B
+
+class "事象" as C
+
+class "事実" as D
+
+B -> A : 帰納
+
+B "1" *-- "*" C 
+
+B "1" *-- "*" D 
+
+class "個別論" as E
+
+E <-- A : 演繹
+
+class "一般論" as F
+
+E -> F : 帰納
+
+@enduml
+```
+
+```plantuml
+@startuml
+
+title 論理の基本構造(トップダウン)
+
+class "一般論" as A
+
+class "個別論" as B
+
+class "事象" as C
+
+class "事実" as D
+
+A --> B : 演繹
+
+B "1" *-- "*" C
+
+B "1" *-- "*" D
+
+class "一般論" as E
+
+B -> E : 帰納
+
+class "個別論" as F
+
+E ---> F : 演繹
+
+@enduml
+```
+
+## 演繹を使いこなそう!
+
+### 「風鈴」はロジックではない
+
+### 前提にはいろいろな種類がある
+
+1. いつでも常に正しいと主張できる真理
+1. 人間社会が決めた取り決め
+1. その他の一般に用いられる前提
+
+```plantuml
+@startuml
+
+title 論理の基本構造(演繹)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C
+
+abstract "前提" as D {
+  + 真理
+  + 取り決め
+  + その他
+}
+
+class "一般論" as E
+
+class "個別論" as F
+
+
+D <- A
+D <|-- E
+D <|-- F
+A <|-- B
+A <|-- C
+B -> C : 演繹
+
+@enduml
+```
+
+
+### 前提を疑ってかかる
+
+### 前提は事実の裏付けを持って常に確かめていることが必要である
+
+### 仮説を置いて考える
+
+```plantuml
+@startuml
+
+title 論理の基本構造(演繹)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C
+
+abstract "前提" as D 
+
+abstract "仮説" as E
+
+class "仮説A" as F
+
+class "仮説B" as G
+
+class "仮説C" as H
+
+D <- A
+E <- D
+E <|-- F
+E <|-- G
+E <|-- H
+A <|-- B
+A <|-- C
+B -> C : 演繹
+
+@enduml
+```
+
+## 帰納を使いこなそう！
+
+### 同質のものを帰納して共通項を見出す＜単純な帰納＞
+
+```plantuml
+@startuml
+
+title 論理の基本構造(帰納)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C {
+  共通項を見出して帰納する()
+}
+
+class "事象" as D
+
+class "事実" as E
+
+A <|-- B
+A <|-- C
+C -> B : 帰納
+
+C "1" *-- "*" D 
+
+C "1" *-- "*" E 
+
+@enduml
+```
+
+### 異質のものを組み合わせて帰納する＜複雑な帰納＞
+
+```plantuml
+@startuml
+
+title 論理の基本構造(帰納)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C {
+  異質ものを組み合わせて帰納する()
+}
+
+class "事象" as D
+
+class "事実" as E
+
+A <|-- B
+A <|-- C
+C -> B : 帰納
+
+C "1" *-- "*" D 
+
+C "1" *-- "*" E 
+
+@enduml
+```
+
+### モレなく重複なく全てを網羅する
+
+1. 足し算・引き算で考える
+1. 掛け算で考える
+1. 軸で考える
+1. 枠組みを工夫する
+
+```plantuml
+@startuml
+
+title 論理の基本構造(帰納)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C {
+  + 足し算・引き算で考える()
+  + 掛け算で考える()
+  + 軸で考える()
+  + 枠組みを工夫する()
+}
+
+class "事象" as D
+
+class "事実" as E
+
+class "その他" as F
+
+A <|-- B
+A <|-- C
+C -> B : 帰納
+
+C "1" *-- "*" D 
+C "1" *-- "*" E 
+C "0..1" o-- "*" F
+
+@enduml
+```
+
+### 枠組みで考える
+
+
+```plantuml
+@startuml
+
+title 論理の基本構造(帰納)
+
+abstract "論理" as A 
+
+class "一般論" as B
+
+class "個別論" as C {
+  + 枠組みで考える()
+}
+
+class "事象" as D
+
+class "事実" as E
+
+abstract "枠組み" as F
+
+class "3C" as G
+
+class "SWOT" as H
+
+A <|-- B
+A <|-- C
+C -> B : 帰納
+
+C "1" *-- "*" D 
+
+C "1" *-- "*" E 
+
+F <- C
+F <|-- G
+F <|-- H
+
+@enduml
+```
+
 ## 論理と「論理的」について
 
 > 高い論理性を身につけるとは、「結論」と「結論を支えるもの」の関係について正確な理解を獲得することなのです。
@@ -23,13 +408,6 @@
 > 高い論理性とは、結論と前提との関係の理解度が高く、理解している通りにそれを実践の場で使えることなのです。
 >
 > 論理思考力を鍛える本 小野田博一
-
-> なぜ論理思考が必要なのか
-> 1. 情緒に流されやすい判断や行動を防ぎ、自分の頭で考えて、「正しい結論を導く」ことができること。
-> 1. 文化の同一性に頼らず、どの民族にも通用する、「正しいコミュニケーションができること」こと。
-> 1. 「発想を助け、課題の検討・解決に役立つ」こと。
->
-> わかる。、使える「論理思考」の本　後正武
 
 ## 論理の世界の用語
 
@@ -43,6 +421,42 @@
 インダクティブ・インファランスの評価は、strong/weakで与えられます。インダクティブ・インファランスは「たぶんどうだろうか」の推論なので、前提が正しくとも、得られた結論が100%確実に正しいと断言できません。
 
 論理が正しいだけでなく、前提も（真実か否かの点から）正しい場合、評価はsoundで与えられます。
+
+```plantuml
+@startuml
+
+title 論理の世界の用語
+
+abstract "statement" as A {
+  + 結論
+  + 前提
+  + reasoning()
+  + sound()
+}
+
+class "argument" as B {
+}
+
+abstract "logic" as C {
+}
+
+interface "deductive_inference" as D {
+  + valid()
+  + invalid()
+}
+
+interface "inductive_inference" as E {
+  + strong()
+  + weak()
+}
+
+A <|-- B
+A -> C
+C <|-- D
+C <|-- E
+
+@enduml
+```
 
 > ロジック（logic）とは、論理、論法、理屈、理路などの意味を持つ英単語。一般の外来語としては、理屈、論拠、話の道筋などを表すことが多い
 >
@@ -64,6 +478,24 @@
 >
 > [IT用語辞典 e-Words](https://e-words.jp/w/%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3.html)
 
+
+```plantuml
+@startuml
+title: 異なるコンテキスト
+
+component "論理の世界" {
+  component "statement" as 1
+  component "argument" as 2
+  component "logic" as 3
+}
+
+component "IT分野" {
+  component "statement" as 4
+  component "argument" as 5
+  component "logic" as 6
+}
+@enduml
+```
 
 ## 「ロジカル（論理的）」とは何か
 
@@ -92,25 +524,6 @@
 
 > さらに、「述べてしまうとまずい部分（議論の弱点を自ら晒してしまう部分）」は、実生活の議論では必ず（意識的に、あるいは無意識に）省略されるので、なおさら、「省略されている部分を見落とさない」が大切なのです。
 
-## 論理の基本
-
-> １つのメッセージ（結論）は、必ず2つ以上のサブ・メッセージ（要因）でサポートされてるため、論理は、底辺に行くほど広いピラミッド状に組み上げられる。
->
-> わかる。、使える「論理思考」の本　後正武
-
-1. 論理の基本単位は、単語ではなく主語・述語で組み上げるメッセージである。
-1. メッセージを組み上げる基本構造には「演繹」と「帰納」という2つの方法がある。
-1. 上位のメッセージと、それをサポートする下位のサブ・メッセージは、結論と要因、あるいは総合と部分の関係にある（メッセージの上下関係）
-1. 上位のメッセージを支える下位のメッセージは、それらを総合すると、モレや重複がないこと（水平関係）
-1. 全体を支える最下部のメッセージは、事実、またはそれに近い疑いようのないメッセージ（蓋然性の高いメッセージ）であること
-
-## 論理の基本構造
-
-Deduction(演繹)は、前提となる正しいメッセージ（一般論）がまずあり、それを個別の事象に適用して、正しい主張・答を引き出す方法で「一般論」から「個別論」へという構造になっている
-
-Induction(帰納)は、たくさんの個別の事象や主張を集めて、より一般的に通用する共通のメッセージを導き出す方法で「個別論」から「一般論」へという構造になっている
-
-
 ## クリティカルシンキング
 
 > 重要な点の最後は、あなたが見聞きするものごとについての批判的な考え方です。
@@ -125,7 +538,7 @@ Induction(帰納)は、たくさんの個別の事象や主張を集めて、よ
 
 > なぜクリティカル・シンキングが必要なのかと言えば、それは、読み聞きした内容で「相手のいいように操られないため」「間違った判断を下さないため」です。
 
-> クリティカル・シンキンキングのポイントは「むやみに信じないこと」です。つまり「信じるにたる根拠がないかぎり信じるな」です。
+> クリティカル・シンキングのポイントは「むやみに信じないこと」です。つまり「信じるにたる根拠がないかぎり信じるな」です。
 
 > 「自分自身の判断力を使って判断する」とは、「前提と結論のつながりの正しさや支えかたの強度」を自分自身で判断することで、具体的には、結論が正しく導き出されているか、しっかり支えられているか、および情報そのものの信頼性を考えることです。
 
@@ -138,6 +551,19 @@ Induction(帰納)は、たくさんの個別の事象や主張を集めて、よ
    1. 隠れているアサンプションがある？
 	 1. アサンプションは正しい？
 
+```plantuml
+@startuml
+start
+:結論を見つけよ;
+:支えている（つもりの）ものを見つけよ;
+:支えているつもりのものの信頼性を判断せよ;
+:支えているつもりのものが十分支えているかー支えている程度の十分さを調べよ;
+if (隠れているアサンプションがある？) then (yes)
+  :アサンプションは正しい？;
+endif
+stop
+@enduml
+```
 
 > このような「当然正しい」と考えられている事柄をー明言されていようといまいとー英語ではアサンプション(assumption)と言います。
 >
@@ -146,6 +572,44 @@ Induction(帰納)は、たくさんの個別の事象や主張を集めて、よ
 
 > 前提から結論を導く思考のことをリーズニング（reasoning）といいます。
 
+```plantuml
+@startuml
+
+title 論理の世界の用語
+
+abstract "statement" as A {
+  + 結論
+  + 前提
+  + reasoning()
+  + sound()
+}
+
+class "argument" as B {
+}
+
+abstract "logic" as C {
+}
+
+interface "deductive_inference" as D {
+  + valid()
+  + invalid()
+}
+
+interface "inductive_inference" as E {
+  + strong()
+  + weak()
+}
+
+abstract "assumption" as F
+
+F -* A
+A <|-- B
+A -> C
+C <|-- D
+C <|-- E
+
+@enduml
+```
 ### クリティカル・シンキングの2つのコツ
 
 1. 隠れているアサンプションが何かを考えよ
@@ -173,6 +637,14 @@ Induction(帰納)は、たくさんの個別の事象や主張を集めて、よ
 > もっとも強い反論は、もとの議論のアサンプションをアタックする議論です。
 
 ## 引用文献
+
+- [わかる、使える「論理思考」の本 日本一わかりやすい授業、開講！](https://www.amazon.co.jp/%E3%82%8F%E3%81%8B%E3%82%8B%E3%80%81%E4%BD%BF%E3%81%88%E3%82%8B%E3%80%8C%E8%AB%96%E7%90%86%E6%80%9D%E8%80%83%E3%80%8D%E3%81%AE%E6%9C%AC-%E6%97%A5%E6%9C%AC%E4%B8%80%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%84%E6%8E%88%E6%A5%AD%E3%80%81%E9%96%8B%E8%AC%9B%EF%BC%81-%E5%BE%8C-%E6%AD%A3%E6%AD%A6-ebook/dp/B08R37L3YW/ref=sr_1_19?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3156JV5HPZEFX&dib=eyJ2IjoiMSJ9.ocNw5tu0DCBoGPWIQJTlmv1Xb70wAzx3bHNNancrp1W0jWFsbP7ASED88N7rQs6jYWd0aSQrwUxjLZDCQD9EyHdrptHE9GdXOBiI7GTP0oBnhW21BDCsmvKdwfMagGAzgO3FKz0kDMznkB3lTUja29LR2nTXUEsz04nUZcfRoHU.VMAXgoRwztIqOFXDyTh2-C4ts1PRGzV4h-jw8Mu1-tc&dib_tag=se&keywords=%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%80%83%E3%81%88%E3%82%8B&qid=1710392290&s=books&sprefix=%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%80%83%E3%81%88%E3%82%8B%E6%96%B9%E6%B3%95%2Cstripbooks%2C173&sr=1-19)
+
+- [論理的に考える方法: 判断力がアップし本質への筋道が読める](https://www.amazon.co.jp/%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%80%83%E3%81%88%E3%82%8B%E6%96%B9%E6%B3%95%E2%80%95%E5%88%A4%E6%96%AD%E5%8A%9B%E3%81%8C%E3%82%A2%E3%83%83%E3%83%97%E3%81%97%E6%9C%AC%E8%B3%AA%E3%81%B8%E3%81%AE%E7%AD%8B%E9%81%93%E3%81%8C%E8%AA%AD%E3%82%81%E3%82%8B-%E5%B0%8F%E9%87%8E%E7%94%B0-%E5%8D%9A%E4%B8%80/dp/4534028075?ref_=ast_author_dp&dib=eyJ2IjoiMSJ9.OrfP_uEuPCoK_CAe7_NK3DHeDiVvisHa9dBuFp-r-FKwaQPzV93gwxXAY6pHf_GAAXsSWCL-VrbbdEr-1ppiEH3Rk1eKOEreTM1EWnaeGPOqzfh6LXYVTmEy-dnZ_bJSiNzhA71VAmresFIVApJNY3xFteBtghW4P0a7Wyv8QYnw1z2FGc6pIqAyrMc8I8e82iBKIXjBoCgfdRe0tDygN5qg2-PQFFOy83u5Qmbm7I4.vyVjugiYeOjCVpBZ5DOPPFZxQ7VbycmctN1HLIy5TyQ&dib_tag=AUTHOR)
+  
+- [論理思考力を鍛える本: 問題演習](https://www.amazon.co.jp/%E8%AB%96%E7%90%86%E6%80%9D%E8%80%83%E5%8A%9B%E3%82%92%E9%8D%9B%E3%81%88%E3%82%8B%E6%9C%AC%E2%80%95%E5%95%8F%E9%A1%8C%E6%BC%94%E7%BF%92-%E5%B0%8F%E9%87%8E%E7%94%B0-%E5%8D%9A%E4%B8%80/dp/4534034504?ref_=ast_author_dp&dib=eyJ2IjoiMSJ9.OrfP_uEuPCoK_CAe7_NK3DHeDiVvisHa9dBuFp-r-FKwaQPzV93gwxXAY6pHf_GAAXsSWCL-VrbbdEr-1ppiEH3Rk1eKOEreTM1EWnaeGPOqzfh6LXYVTmEy-dnZ_bJSiNzhA71VAmresFIVApJNY3xFteBtghW4P0a7Wyv8QYnw1z2FGc6pIqAyrMc8I8e82iBKIXjBoCgfdRe0tDygN5qg2-PQFFOy83u5Qmbm7I4.vyVjugiYeOjCVpBZ5DOPPFZxQ7VbycmctN1HLIy5TyQ&dib_tag=AUTHOR)
+
+- [論理的に説得する方法: 納得させてYESを引き出す](https://www.amazon.co.jp/%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%AA%AC%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E2%80%95%E7%B4%8D%E5%BE%97%E3%81%95%E3%81%9B%E3%81%A6YES%E3%82%92%E5%BC%95%E3%81%8D%E5%87%BA%E3%81%99-%E5%B0%8F%E9%87%8E%E7%94%B0-%E5%8D%9A%E4%B8%80/dp/4534029934?ref_=ast_author_dp&dib=eyJ2IjoiMSJ9.OrfP_uEuPCoK_CAe7_NK3DHeDiVvisHa9dBuFp-r-FKwaQPzV93gwxXAY6pHf_GAAXsSWCL-VrbbdEr-1ppiEH3Rk1eKOEreTM1EWnaeGPOqzfh6LXYVTmEy-dnZ_bJSiNzhA71VAmresFIVApJNY3xFteBtghW4P0a7Wyv8QYnw1z2FGc6pIqAyrMc8I8e82iBKIXjBoCgfdRe0tDygN5qg2-PQFFOy83u5Qmbm7I4.vyVjugiYeOjCVpBZ5DOPPFZxQ7VbycmctN1HLIy5TyQ&dib_tag=AUTHOR)
 
 - [リーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック (Theory in practice)](https://www.amazon.co.jp/%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-%E2%80%95%E3%82%88%E3%82%8A%E8%89%AF%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E6%9B%B8%E3%81%8F%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%A7%E5%AE%9F%E8%B7%B5%E7%9A%84%E3%81%AA%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-Theory-practice-Boswell/dp/4873115655/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89&qid=1619404078&s=books&sr=1-1)
 
