@@ -358,6 +358,8 @@ C "0..1" o-- "*" F
 @enduml
 ```
 
+#### 足し算・引き算で考える
+
 ```plantuml
 @startmindmap
 title 足し算・引き算で考える
@@ -384,6 +386,8 @@ title 足し算・引き算で考える
 
 可能な全売上機会 - 現行の各営業所の売上の合計 = その他
 
+#### 掛け算で考える
+
 ```plantuml
 @startmindmap
 title 掛け算で考える
@@ -396,6 +400,8 @@ title 掛け算で考える
 ```
 
 店舗数 x １店舗あたりの売上 = 全体の売上
+
+#### 軸で考える
 
 ```mermaid
 quadrantChart
@@ -412,7 +418,7 @@ quadrantChart
     Campaign D: [0.78, 0.34]
     Campaign E: [0.40, 0.34]
     Campaign F: [0.35, 0.78]
-```    
+```
 
 
 ### 枠組みで考える
@@ -519,6 +525,8 @@ stop
 @enduml
 ```
 
+#### 志望校を決める枠組み
+
 ```plantuml
 @startmindmap
 title 志望校を決める枠組み
@@ -568,6 +576,8 @@ title 志望校を決める枠組み
 
 ### 表を活用する
 
+#### 志望校を決める枠組み
+
 | 規準 | 学校A | 学校B | 学校C |
 | ---- | ---- | ---- | ---- |
 | 通学時間 | 30分 | 45分 | 1時間 |
@@ -588,6 +598,8 @@ title 志望校を決める枠組み
 
 ### イッシュー・ツリーを展開する
 
+#### ラーメン店を開くべきか否か
+
 ```plantuml
 @startmindmap
 title ラーメン店を開くべきか否かの条件
@@ -598,6 +610,8 @@ title ラーメン店を開くべきか否かの条件
 ** 3 競合がいないか？
 @endmindmap
 ```
+
+#### ラーメン店の経営が成り立つ条件
 
 ```plantuml
 @startuml
@@ -628,6 +642,8 @@ A <-- D
 @enduml
 ```
 
+#### ラーメン店を開くかどうかのイッシュー・ツリー
+
 ```plantuml
 @startmindmap
 title ラーメン店を開くかどうかのイッシュー・ツリー
@@ -656,6 +672,8 @@ title ラーメン店を開くかどうかのイッシュー・ツリー
 
 ### 数学の考え方を援用する
 
+#### 売上を上げるための考え方
+
 ```plantuml
 @startuml
 object "売り上げが低下した" as A 
@@ -664,6 +682,8 @@ object "売上を上げれるか" as B
 A -> B
 @enduml
 ```
+
+#### 足し算・引き算で考える
 
 ```plantuml
 @startmindmap
@@ -682,6 +702,8 @@ title 足し算・引き算
 
 @endmindmap
 ```
+
+#### 掛け算で考える
 
 ```plantuml
 @startmindmap
@@ -709,6 +731,8 @@ title 掛け算
 @endmindmap
 ```
 
+#### 要素・枠組みで考える
+
 ```plantuml
 @startmindmap
 title 要素・枠組み
@@ -724,8 +748,6 @@ title 要素・枠組み
 
 @endmindmap
 ```
-
-
 
 
 ## 論理と「論理的」について
