@@ -19,7 +19,7 @@
 > 1. 文化の同一性に頼らず、どの民族にも通用する、「正しいコミュニケーションができること」こと。
 > 1. 「発想を助け、課題の検討・解決に役立つ」こと。
 >
-> わかる。、使える「論理思考」の本　後正武
+> わかる、使える「論理思考」の本
 
 ## 論理の基本
 
@@ -781,11 +781,11 @@ title 論理の世界の用語
 abstract "statement" as A {
   + 結論
   + 前提
-  + reasoning()
-  + sound()
 }
 
-class "argument" as B {
+abstract "argument" as B {
+  + reasoning()
+  + sound()
 }
 
 abstract "logic" as C {
@@ -802,12 +802,67 @@ interface "inductive_inference" as E {
 }
 
 A <|-- B
-A -> C
+B -> C
 C <|-- D
 C <|-- E
 
 @enduml
 ```
+
+### 日本語との対応
+
+- inference
+  - deductive inference 1
+  - inductive inference 2 - 4
+
+1. カモノハシは哺乳類である。したがって、カモノハシは、哺乳類か鳥類である。
+2. 私がこれまでに食べたレモンは、どれもすっぱかった。だからレモンはどれもすっぱいだろう。
+3. メガネをかけている高校生の女の子のうち、90%のメガネは黒縁である。紀子は高校生で、メガネをかけている。だから、それはたぶん黒縁だろう。
+4. 春にピンクのスカートが流行した年の夏に、白い水着が流行した。ことしの春はピンクのＴシャツが流行しているから、夏には白い水着が流行するだろう。
+
+1は日本語では演繹とよばれています。2,3,4は日本語では帰納とよばれていますが日本語で帰納といえば、一般的に2の一般化を指すようです。1から4まではinferenceでこの訳語は推論ですが、日本語の推論の語の意味は、通常、1の演繹をさすので、推論はinferenceの訳語としては適切ではないようです。
+なお、2-4のタイプ名は2は一般化、3は統計的帰納、4は類推です。
+
+
+| 番号                     | タイプ       | 日本語での呼称 |
+|--------------------------|------------|--------------|
+| 1 : deductive inference  | 演繹        | 演繹          |
+| 2 : inductive inference  | 一般化      | 帰納          |
+| 3 : inductive inference  | 統計的帰納   | 帰納          |
+| 4 : inductive inference  | 類推        | 帰納        |
+
+### 必要条件・十分条件
+
+必要条件
+
+AであるためにはBである必要がある（たとえば、「ペンギンであるためには、鳥である必要がある」）
+BであることはAであることの必要条件である（たとえば「鳥であることはペンギンであることの必要条件である」）
+
+```plantuml
+component  {
+	object B
+	component  {
+		object A 
+	}
+}
+B --> A : 必要条件
+```
+
+十分条件
+
+BであるためにはAであれば十分である（たとえば、「鳥であるためには、ペンギンであれば十分である」）
+AであることはBであることの十分条件である（たとえば「ペンギンであることは鳥であることの十分条件である」）
+
+```plantuml
+component  {
+	object B
+	component  {
+		object A
+	}
+}
+B <-- A : 十分条件
+```
+
 
 > ロジック（logic）とは、論理、論法、理屈、理路などの意味を持つ英単語。一般の外来語としては、理屈、論拠、話の道筋などを表すことが多い
 >
@@ -931,11 +986,11 @@ title 論理の世界の用語
 abstract "statement" as A {
   + 結論
   + 前提
-  + reasoning()
-  + sound()
 }
 
-class "argument" as B {
+abstract "argument" as B {
+  + reasoning()
+  + sound()
 }
 
 abstract "logic" as C {
@@ -955,12 +1010,13 @@ abstract "assumption" as F
 
 F -* A
 A <|-- B
-A -> C
+B -> C
 C <|-- D
 C <|-- E
 
 @enduml
 ```
+
 ### クリティカル・シンキングの2つのコツ
 
 1. 隠れているアサンプションが何かを考えよ
@@ -997,10 +1053,10 @@ C <|-- E
 
 - [論理的に説得する方法: 納得させてYESを引き出す](https://www.amazon.co.jp/%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%AA%AC%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E2%80%95%E7%B4%8D%E5%BE%97%E3%81%95%E3%81%9B%E3%81%A6YES%E3%82%92%E5%BC%95%E3%81%8D%E5%87%BA%E3%81%99-%E5%B0%8F%E9%87%8E%E7%94%B0-%E5%8D%9A%E4%B8%80/dp/4534029934?ref_=ast_author_dp&dib=eyJ2IjoiMSJ9.OrfP_uEuPCoK_CAe7_NK3DHeDiVvisHa9dBuFp-r-FKwaQPzV93gwxXAY6pHf_GAAXsSWCL-VrbbdEr-1ppiEH3Rk1eKOEreTM1EWnaeGPOqzfh6LXYVTmEy-dnZ_bJSiNzhA71VAmresFIVApJNY3xFteBtghW4P0a7Wyv8QYnw1z2FGc6pIqAyrMc8I8e82iBKIXjBoCgfdRe0tDygN5qg2-PQFFOy83u5Qmbm7I4.vyVjugiYeOjCVpBZ5DOPPFZxQ7VbycmctN1HLIy5TyQ&dib_tag=AUTHOR)
 
-- [リーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック (Theory in practice)](https://www.amazon.co.jp/%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-%E2%80%95%E3%82%88%E3%82%8A%E8%89%AF%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E6%9B%B8%E3%81%8F%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%A7%E5%AE%9F%E8%B7%B5%E7%9A%84%E3%81%AA%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-Theory-practice-Boswell/dp/4873115655/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89&qid=1619404078&s=books&sr=1-1)
-
 - [達人プログラマー(第2版): 熟達に向けたあなたの旅](https://www.amazon.co.jp/%E9%81%94%E4%BA%BA%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9E%E3%83%BC-%E7%AC%AC2%E7%89%88-%E7%86%9F%E9%81%94%E3%81%AB%E5%90%91%E3%81%91%E3%81%9F%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E6%97%85-David-Thomas/dp/4274226298/ref=pd_sbs_1?pd_rd_w=dGuvs&pf_rd_p=e0138d67-9e5b-487b-a2c3-be9ff3010069&pf_rd_r=FQTQBJZRDASV3DCJPQJB&pd_rd_r=400067c3-dc6c-4e86-966e-79474f3ab44f&pd_rd_wg=oB0uI&pd_rd_i=4274226298&psc=1)
 
+
+- [リーダブルコード ―より良いコードを書くためのシンプルで実践的なテクニック (Theory in practice)](https://www.amazon.co.jp/%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89-%E2%80%95%E3%82%88%E3%82%8A%E8%89%AF%E3%81%84%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E6%9B%B8%E3%81%8F%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B7%E3%83%B3%E3%83%97%E3%83%AB%E3%81%A7%E5%AE%9F%E8%B7%B5%E7%9A%84%E3%81%AA%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-Theory-practice-Boswell/dp/4873115655/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=%E3%83%AA%E3%83%BC%E3%83%80%E3%83%96%E3%83%AB%E3%82%B3%E3%83%BC%E3%83%89&qid=1619404078&s=books&sr=1-1)
 
 
 - [現場で役立つシステム設計の原則 ~変更を楽で安全にするオブジェクト指向の実践技法](https://www.amazon.co.jp/dp/477419087X)

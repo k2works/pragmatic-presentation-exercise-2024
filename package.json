@@ -74,6 +74,7 @@
     ]
   },
   "dependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "markdown-it-plantuml": "^1.4.1"
   }
 }
