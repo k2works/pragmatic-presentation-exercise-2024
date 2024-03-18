@@ -119,8 +119,8 @@ abstract "statement" as A {
 }
 
 abstract "argument" as B {
-  + 結論
   + 前提
+  + 結論
 }
 
 abstract "logic" as C {
@@ -1056,8 +1056,8 @@ abstract "statement" as A {
 }
 
 abstract "argument" as B {
-  + 結論
   + 前提
+  + 結論
 }
 
 abstract "logic" as C {
@@ -1178,7 +1178,7 @@ object "結論" as A {
 	実践プログラマの基本スキルである
 }
 object "小前提" as B {
-	論理的思考は取得可能なスキルであり
+	論理的思考は習得可能なスキルであり
 	論理的思考は知識を扱うプログラマにとって
 	キャリアの始まりから終わりまで
 	あらゆる局面で役に立つ。
