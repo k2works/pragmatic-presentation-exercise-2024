@@ -92,16 +92,16 @@
 title 論理の世界の用語
 
 abstract "statement" as A {
+}
+
+abstract "argument" as B {
   + 結論
   + 前提
 }
 
-abstract "argument" as B {
+abstract "logic" as C {
   + reasoning()
   + sound()
-}
-
-abstract "logic" as C {
 }
 
 interface "deductive_inference" as D {
@@ -115,7 +115,7 @@ interface "inductive_inference" as E {
 }
 
 A <|-- B
-B -> C
+B <- C
 C <|-- D
 C <|-- E
 
@@ -174,6 +174,11 @@ B <-- A : 十分条件
 
 #### 「ロジカル（論理的）」とは何か
 
+> 論理は「知識」とは関係がありません。論理は容器（のようなもの）であって知識は中身の一部です。論理の正しさは推論の形式の正しさであり、実体はありません。
+>
+> — 論理的に考える方法 小野田博一（著）日本実業出版社
+
+
 > 「実生活の議論（のうち演繹）では、validであるだけでは十分ではなく、soundでなければならない」ということで、つまり、「前提は真実でなければならない」ということです。
 >> 論理思考力を鍛える本 小野田博一
 
@@ -185,6 +190,13 @@ B <-- A : 十分条件
 > 1. 「発想を助け、課題の検討・解決に役立つ」こと。
 >
 >> わかる、使える「論理思考」の本
+
+
+> 正しく解決するための技術
+> 日本人の論理的な能力が劣るとは思わないが、「食い違った主張を、感情に流されず合理的にきちんと解決しようとする基本姿勢」には欠けているような気がする。
+> その意味で、我々は問題を正しい方法で解決する努力を怠っているのではないだろうか。
+>> 論理的思考と発想の技術
+
 
 ### ロジカルシンキングの基本
 
@@ -211,7 +223,7 @@ abstract "論理" as A {
   + 述語
 }
 
-interface "メッセージ" as B {
+interface "構造" as B {
   + 演繹()
   + 帰納()
 }
@@ -225,7 +237,7 @@ class "要因" as D {
 B <|-- A
 A <|- C
 A <|- D
-C "1" <-- "*" D
+C "1" *-- "*" D
 D *- D
 
 @enduml
@@ -233,11 +245,9 @@ D *- D
 
 #### 論理の基本構造
 
-Deduction(演繹)は、前提となる正しいメッセージ（一般論）がまずあり、それを個別の事象に適用して、正しい主張・答を引き出す方法で「一般論」から「個別論」へという構造になっている
-
-Induction(帰納)は、たくさんの個別の事象や主張を集めて、より一般的に通用する共通のメッセージを導き出す方法で「個別論」から「一般論」へという構造になっている
-
 ##### 演繹
+
+Deduction(演繹)は、前提となる正しいメッセージ（一般論）がまずあり、それを個別の事象に適用して、正しい主張・答を引き出す方法で「一般論」から「個別論」へという構造になっている
 
 ```plantuml
 @startuml
@@ -258,6 +268,8 @@ B -> C : 演繹
 ```
 
 ##### 帰納
+
+Induction(帰納)は、たくさんの個別の事象や主張を集めて、より一般的に通用する共通のメッセージを導き出す方法で「個別論」から「一般論」へという構造になっている
 
 ```plantuml
 @startuml
@@ -285,66 +297,6 @@ C "1" *-- "*" E
 @enduml
 ```
 
-```plantuml
-@startuml
-
-title 論理の基本構造(ボトムアップ)
-
-class "一般論" as A
-
-class "個別論" as B
-
-class "事象" as C
-
-class "事実" as D
-
-B -> A : 帰納
-
-B "1" *-- "*" C 
-
-B "1" *-- "*" D 
-
-class "個別論" as E
-
-E <-- A : 演繹
-
-class "一般論" as F
-
-E -> F : 帰納
-
-@enduml
-```
-
-```plantuml
-@startuml
-
-title 論理の基本構造(トップダウン)
-
-class "一般論" as A
-
-class "個別論" as B
-
-class "事象" as C
-
-class "事実" as D
-
-A --> B : 演繹
-
-B "1" *-- "*" C
-
-B "1" *-- "*" D
-
-class "一般論" as E
-
-B -> E : 帰納
-
-class "個別論" as F
-
-E ---> F : 演繹
-
-@enduml
-```
-
 ### ロジカルシンキングの方法
 
 #### 演繹
@@ -363,19 +315,19 @@ class "一般論" as B
 class "個別論" as C
 
 abstract "前提" as D {
-  + 真理
-  + 取り決め
-  + その他
 }
 
-class "一般論" as E
+class "真理" as E
 
-class "個別論" as F
+class "取り決め" as F
+
+class "その他" as G
 
 
 D <- A
 D <|-- E
 D <|-- F
+D <|-- G
 A <|-- B
 A <|-- C
 B -> C : 演繹
@@ -748,6 +700,86 @@ title 志望校を決める枠組み
 
 ##### イッシュー・ツリーを展開する
 
+###### イッシューとは
+
+###### イッシュー・ツリーの考え方
+
+> イッシュー・ツリーの考え方
+> 実は、イッシューは「ロジックの動的展開」であって、構造上の本質はロジックと全く同じものである。
+> ただし、ロジックは「あるメッセージ（命題）」を正しく主張するために、最下部の事実からピラミッドの頂点へと積み上げる構造になっているのに対して、イッシューを追求する過程は、逆に争点からはじめて、それを解決するためのより具体的な疑問へと、サブ・イッシューに分解し、ついに事実に突き当たって解決をみるところに違いがある。
+>> 論理的思考と発想の技術
+
+```plantuml
+@startuml
+
+title ロジック(ボトムアップ)
+
+class "一般論" as A
+
+class "個別論" as B
+
+class "事象" as C
+
+class "事実" as D
+
+B -> A : 帰納
+
+B "1" *-- "*" C 
+
+B "1" *-- "*" D 
+
+class "個別論" as E
+
+E <-- A : 演繹
+
+class "一般論" as F
+
+E -> F : 帰納
+
+@enduml
+```
+
+```plantuml
+@startuml
+
+title イッシュー(トップダウン)
+
+class "一般論" as A
+
+class "個別論" as B
+
+class "事象" as C
+
+class "事実" as D
+
+A --> B : 演繹
+
+B "1" *-- "*" C
+
+B "1" *-- "*" D
+
+class "一般論" as E
+
+B -> E : 帰納
+
+class "個別論" as F
+
+class "事実" as G
+
+E --> F : 演繹
+
+F "1" *-- "*" G
+
+
+@enduml
+```
+
+- イッシュー・ツリーはロジックの動的展開であり、 MECE、抽象レベル、事実のサポート等の諸要件は共通である。
+- イッシュー・ツリーは、未解決の課題（争点）を合理的に解明し、正しい結論を導くための枠組みであり、最後に事実を求めて初めて結果に結びつく。
+- プロジェクトチームを効果的に運用するためには、イッシュー・ツリーが不可欠である。
+- イッシュー・ツリーの展開はいろいろあり、巧拙がある。訓練して身につけるほかはない。
+- 頭で考えるより、直接観察したりデータを手に取る事によって、より効果的なイッシューの展開が期待できる。
+
 
 ```plantuml
 @startmindmap
@@ -773,23 +805,6 @@ title ラーメン店を開くかどうかのイッシュー・ツリー
 *** (競合がある場合)集客などかえって相乗効果を期待することはできないか
 @endmindmap
 ```
-
-> 正しく解決するための技術
-> 日本人の論理的な能力が劣るとは思わないが、「食い違った主張を、感情に流されず合理的にきちんと解決しようとする基本姿勢」には欠けているような気がする。
-> その意味で、我々は問題を正しい方法で解決する努力を怠っているのではないだろうか。
->> 論理的思考と発想の技術
-
-> イッシュー・ツリーの考え方
-> 実は、イッシューは「ロジックの動的展開」であって、構造上の本質はロジックと全く同じものである。
-> ただし、ロジックは「あるメッセージ（命題）」を正しく主張するために、最下部の事実からピラミッドの頂点へと積み上げる構造になっているのに対して、イッシューを追求する過程は、逆に争点からはじめて、それを解決するためのより具体的な疑問へと、サブ・イッシューに分解し、ついに事実に突き当たって解決をみるところに違いがある。
->> 論理的思考と発想の技術
-
-- イッシュー・ツリーはロジックの動的展開であり、 MECE、抽象レベル、事実のサポート等の諸要件は共通である。
-- イッシュー・ツリーは、未解決の課題（争点）を合理的に解明し、正しい結論を導くための枠組みであり、最後に事実を求めて初めて結果に結びつく。
-- プロジェクトチームを効果的に運用するためには、イッシュー・ツリーが不可欠である。
-- イッシュー・ツリーの展開はいろいろあり、巧拙がある。訓練して身につけるほかはない。
-- 頭で考えるより、直接観察したりデータを手に取る事によって、より効果的なイッシューの展開が期待できる。
-
 
 ##### 数学の考え方を援用する
 
@@ -969,16 +984,16 @@ stop
 title 論理の世界の用語
 
 abstract "statement" as A {
+}
+
+abstract "argument" as B {
   + 結論
   + 前提
 }
 
-abstract "argument" as B {
+abstract "logic" as C {
   + reasoning()
   + sound()
-}
-
-abstract "logic" as C {
 }
 
 interface "deductive_inference" as D {
@@ -993,9 +1008,9 @@ interface "inductive_inference" as E {
 
 abstract "assumption" as F
 
-F -* A
+F -* B
 A <|-- B
-B -> C
+B <- C
 C <|-- D
 C <|-- E
 
@@ -1088,7 +1103,7 @@ object "結論" as A {
 }
 object "小前提" as B {
 	論理的思考は取得可能なスキルであり
-	論理的思考はプログラマにとって
+	論理的思考は知識を扱うプログラマにとって
 	キャリアの始まりから終わりまで
 	あらゆる局面で役に立つ。
 }
@@ -1103,14 +1118,14 @@ A <-- B
 C -> B
 
 object "個別論" as B_1 {
-   重要な点の最後は、
-	 あなたが見聞きするものごとについての
-	 批判的な考え方です。
-}
-object "個別論" as B_2 {
    達人プログラマーが取り扱う
 	 素材は木でも鉄でもありません
    --- 知識です。
+}
+object "個別論" as B_2 {
+   重要な点の最後は、
+	 あなたが見聞きするものごとについての
+	 批判的な考え方です。
 }
 object "個別論" as B_3 {
 	１つのメッセージ（結論）は、
@@ -1149,6 +1164,8 @@ B <-- B_5
 ## 引用文献
 
 - [わかる、使える「論理思考」の本 日本一わかりやすい授業、開講！](https://www.amazon.co.jp/%E3%82%8F%E3%81%8B%E3%82%8B%E3%80%81%E4%BD%BF%E3%81%88%E3%82%8B%E3%80%8C%E8%AB%96%E7%90%86%E6%80%9D%E8%80%83%E3%80%8D%E3%81%AE%E6%9C%AC-%E6%97%A5%E6%9C%AC%E4%B8%80%E3%82%8F%E3%81%8B%E3%82%8A%E3%82%84%E3%81%99%E3%81%84%E6%8E%88%E6%A5%AD%E3%80%81%E9%96%8B%E8%AC%9B%EF%BC%81-%E5%BE%8C-%E6%AD%A3%E6%AD%A6-ebook/dp/B08R37L3YW/ref=sr_1_19?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3156JV5HPZEFX&dib=eyJ2IjoiMSJ9.ocNw5tu0DCBoGPWIQJTlmv1Xb70wAzx3bHNNancrp1W0jWFsbP7ASED88N7rQs6jYWd0aSQrwUxjLZDCQD9EyHdrptHE9GdXOBiI7GTP0oBnhW21BDCsmvKdwfMagGAzgO3FKz0kDMznkB3lTUja29LR2nTXUEsz04nUZcfRoHU.VMAXgoRwztIqOFXDyTh2-C4ts1PRGzV4h-jw8Mu1-tc&dib_tag=se&keywords=%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%80%83%E3%81%88%E3%82%8B&qid=1710392290&s=books&sprefix=%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%80%83%E3%81%88%E3%82%8B%E6%96%B9%E6%B3%95%2Cstripbooks%2C173&sr=1-19)
+
+- [経営参謀が明かす論理思考と発想の技術](https://www.amazon.co.jp/%E7%B5%8C%E5%96%B6%E5%8F%82%E8%AC%80%E3%81%8C%E6%98%8E%E3%81%8B%E3%81%99%E8%AB%96%E7%90%86%E6%80%9D%E8%80%83%E3%81%A8%E7%99%BA%E6%83%B3%E3%81%AE%E6%8A%80%E8%A1%93-%E7%9F%A5%E5%8A%9B%E3%82%A2%E3%83%83%E3%83%97%E8%AC%9B%E5%BA%A7-%E5%BE%8C-%E6%AD%A3%E6%AD%A6/dp/4833416646/?_encoding=UTF8&pd_rd_w=RrqOp&content-id=amzn1.sym.283d32d1-edfb-4c41-92c4-67698624ee7b&pf_rd_p=283d32d1-edfb-4c41-92c4-67698624ee7b&pf_rd_r=356-2306096-5319855&pd_rd_wg=td1mD&pd_rd_r=61a3b052-5275-42b2-9e99-d157eb967f76&ref_=aufs_ap_sc_dsk)
 
 - [論理的に考える方法: 判断力がアップし本質への筋道が読める](https://www.amazon.co.jp/%E8%AB%96%E7%90%86%E7%9A%84%E3%81%AB%E8%80%83%E3%81%88%E3%82%8B%E6%96%B9%E6%B3%95%E2%80%95%E5%88%A4%E6%96%AD%E5%8A%9B%E3%81%8C%E3%82%A2%E3%83%83%E3%83%97%E3%81%97%E6%9C%AC%E8%B3%AA%E3%81%B8%E3%81%AE%E7%AD%8B%E9%81%93%E3%81%8C%E8%AA%AD%E3%82%81%E3%82%8B-%E5%B0%8F%E9%87%8E%E7%94%B0-%E5%8D%9A%E4%B8%80/dp/4534028075?ref_=ast_author_dp&dib=eyJ2IjoiMSJ9.OrfP_uEuPCoK_CAe7_NK3DHeDiVvisHa9dBuFp-r-FKwaQPzV93gwxXAY6pHf_GAAXsSWCL-VrbbdEr-1ppiEH3Rk1eKOEreTM1EWnaeGPOqzfh6LXYVTmEy-dnZ_bJSiNzhA71VAmresFIVApJNY3xFteBtghW4P0a7Wyv8QYnw1z2FGc6pIqAyrMc8I8e82iBKIXjBoCgfdRe0tDygN5qg2-PQFFOy83u5Qmbm7I4.vyVjugiYeOjCVpBZ5DOPPFZxQ7VbycmctN1HLIy5TyQ&dib_tag=AUTHOR)
   
