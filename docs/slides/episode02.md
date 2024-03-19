@@ -85,6 +85,10 @@ marp: true
 
 #### 論理と「論理的思考」
 
+> 論理的な思考とは、秩序だった思考です。秩序立てて考えねばなりません。考えを示す際にも、秩序だっていなければなりません。思いつくままに書き並べるのではだめです。「理詰めに考えている」ということを示すためには、帰納と同じで、根拠に量がなければなりません。いろいろな角度からの考察も必要です。いろいろな角度から、結論を支えるのです。「いろいろな角度から」の言葉で誤解して「あれこれ余分なものを混ぜる」のはだめです。
+>
+> — 論理的に考える方法 小野田博一（著）日本実業出版社
+
 > 高い論理性を身につけるとは、「結論」と「結論を支えるもの」の関係について正確な理解を獲得することなのです。
 >
 >> 論理思考力を鍛える本 小野田博一
@@ -140,8 +144,8 @@ interface "inductive_inference" as E {
 
 A <|-- B
 B <- C
-C <|-- D
-C <|-- E
+C --|> D
+C --|> E
 
 @enduml
 ```
@@ -164,9 +168,9 @@ C <|-- E
 
 ---
 
-### 必要条件・十分条件
+#### 必要条件・十分条件
 
-#### 必要条件
+##### 必要条件
 
 AであるためにはBである必要がある（たとえば、「ペンギンであるためには、鳥である必要がある」）
 BであることはAであることの必要条件である（たとえば「鳥であることはペンギンであることの必要条件である」）
@@ -185,7 +189,7 @@ B --> A : 必要条件
 
 ---
 
-#### 十分条件
+##### 十分条件
 
 BであるためにはAであれば十分である（たとえば、「鳥であるためには、ペンギンであれば十分である」）
 AであることはBであることの十分条件である（たとえば「ペンギンであることは鳥であることの十分条件である」）
@@ -244,12 +248,12 @@ B <-- A : 十分条件
 
 title 論理の基本
 
-abstract "論理" as A {
+abstract "メッセージ" as A {
   + 主語
   + 述語
 }
 
-interface "構造" as B {
+interface "論理" as B {
   + 演繹()
   + 帰納()
 }
@@ -286,7 +290,7 @@ Induction(帰納)は、たくさんの個別の事象や主張を集めて、よ
 
 title 論理の基本構造(演繹)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
@@ -308,7 +312,7 @@ B -> C : 演繹
 
 title 論理の基本構造(帰納)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
@@ -342,13 +346,13 @@ C "1" *-- "*" E
 
 title 論理の基本構造(演繹)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
 class "個別論" as C
 
-abstract "前提" as D {
+interface "前提" as D {
 }
 
 class "真理" as E
@@ -378,15 +382,15 @@ B -> C : 演繹
 
 title 論理の基本構造(演繹)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
 class "個別論" as C
 
-abstract "前提" as D 
+interface "前提" as D 
 
-abstract "仮説" as E
+interface "仮説" as E
 
 class "仮説A" as F
 
@@ -417,7 +421,7 @@ B -> C : 演繹
 
 title 論理の基本構造(帰納)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
@@ -449,7 +453,7 @@ C "1" *-- "*" E
 
 title 論理の基本構造(帰納)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
@@ -480,7 +484,7 @@ C "1" *-- "*" E
 
 title 論理の基本構造(帰納)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
@@ -584,7 +588,7 @@ quadrantChart
 
 title 論理の基本構造(帰納)
 
-abstract "論理" as A 
+interface "論理" as A 
 
 class "一般論" as B
 
@@ -1077,11 +1081,11 @@ interface "inductive_inference" as E {
 
 abstract "assumption" as F
 
-F -* B
+F -o B
 A <|-- B
 B <- C
-C <|-- D
-C <|-- E
+C --|> D
+C --|> E
 
 @enduml
 ```
