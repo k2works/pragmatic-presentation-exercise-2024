@@ -1,4 +1,5 @@
-[Google Fonts](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:attach_money:FILL@0;wght@400;GRAD@0;opsz@23)
+# Business Model Canvas
+
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <table>
   <tr>
@@ -75,3 +76,30 @@
     </td>
   </tr>
 </table>
+
+[Google Fonts](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:attach_money:FILL@0;wght@400;GRAD@0;opsz@23)
+
+```plantuml
+@startmindmap
+* Business Model Canvas
+-- 外部環境
+--- 競争
+--- 政治・社会・技術
+--- マクロ経済
+--- 市場
+** 内部環境
+*** 顧客
+**** 顧客セグメント
+**** 顧客関係
+*** 価値
+**** 価値提案
+**** チャネル
+*** インフラ
+**** 主要活動
+**** 主要リソース
+**** 主要パートナー
+*** 資金
+**** 収益源
+**** コスト構造
+@endmindmap
+```
