@@ -1,67 +1,77 @@
+[Google Fonts](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:attach_money:FILL@0;wght@400;GRAD@0;opsz@23)
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <table>
   <tr>
     <td rowspan="2">
-      <b><a href="Key_Partners.md">Key Partners</a></b>
-      <p>Who are our Key Partners?<br>
-      Who are our key suppliers?<br>
-      Which Key Activities do partners perform?</p>
+      <i class="material-icons">domain</i>
+      <b><a href="Key_Partners.md">主要パートナー</a></b>
+      <p>私たちの主要パートナーは誰ですか？<br>
+      主要な供給者は誰ですか？<br>
+      パートナーが実行する主要な活動は何ですか？</p>
     </td>
     <td>
-      <b><a href="Key_Activities.md">Key Activities</a></b>
-      <p>What Key Activities do our Value Propositions require?<br>
-      Our Distribution Channels?<br>
-      Customer Relationships?<br>
-      Revenue Streams?</p>
+      <i class="material-icons">work</i>
+      <b><a href="Key_Activities.md">主要活動</a></b>
+      <p>私たちの価値提案にはどのような主要な活動が必要ですか？<br>
+      私たちの流通チャネルは？<br>
+      顧客との関係は？<br>
+      収益源は？</p>
     </td>
     <td rowspan="2" colspan="2">
-      <b><a href="Value_Propositions.md">Value Propositions</a></b>
-      <p>What value do we deliver to the customer?<br>
-      Which one of our customer's problems are we helping to solve?<br>
-      What bundles of products and services are we offering to each Customer Segment?<br>
-      are different and <br>
-      worth paying <br>
-      attention</p>
+      <i class="material-icons">diamond</i>
+      <b><a href="Value_Propositions.md">価値提案</a></b>
+      <p>私たちは顧客にどのような価値を提供していますか？<br>
+      顧客のどの問題を解決していますか？<br>
+      各顧客セグメントに対して、どのような製品やサービスのバンドルを提供していますか？<br>
+      どの部分が他とは異なり、<br>
+      注意を払う価値があるのですか？</p>
       <br><br><br><br><br>
     </td>
     <td>
-      <b><a href="Customer_Relationships.md">Customer Relationships</a></b>
-      <p>What type of relationship does each of our Customer Segments expects us to establish and maintain with them?<br>
-      Which ones have we established?</p>
+      <i class="material-icons">handshake</i>
+      <b><a href="Customer_Relationships.md">顧客関係</a></b>
+      <p>各顧客セグメントが私たちと確立し、維持してほしいと期待する関係のタイプは何ですか？<br>
+      どのような関係を確立しましたか？</p>
     </td>
     <td rowspan="2">
-      <b><a href="Customer_Segments.md">Customer Segments</a></b>
-      <p>For whom are we creating value?<br>
-      Who are our most important customers?</p>
+      <i class="material-icons">group</i>
+      <b><a href="Customer_Segments.md">顧客セグメント</a></b>
+      <p>私たちは誰のために価値を創造していますか？<br>
+      最も重要な顧客は誰ですか？</p>
     </td>
   </tr>
   <tr>
     <td>
-      <b><a href="Key_Resources.md">Key Resources</a></b>
-      <p>What Key Resources do our Value Propositions require?<br>
-      Our Distribution Channels?<br>
-        Customer Relationships?<br>
-        Revenue Streams?</p>
+      <i class="material-icons">home</i>
+      <b><a href="Key_Resources.md">主要リソース</a></b>
+      <p>私たちの価値提案にはどのような主要なリソースが必要ですか？<br>
+      私たちの流通チャネルは？<br>
+      顧客との関係は？<br>
+      収益源は？</p>
     </td>
     <td>
-      <b><a href="Channels.md">Channels</a></b>
-      <p>Through which Channels do our Customer Segments want to be reached?<br>
-      How are our Channels integrated?
-      How are we integrated with customer routines?</p>
+      <i class="material-icons">share</i>
+      <b><a href="Channels.md">チャネル</a></b>
+      <p>顧客セグメントはどのチャネルを通じて接触を望んでいますか？<br>
+      私たちのチャネルはどのように統合されていますか？
+      顧客のルーチンとどのように統合されていますか？</p>
     </td>
   </tr>
   <tr>
     <td colspan="3">
-      <b><a href="Financial_Plan.md">Cost Structure</a></b>
-      <p>What are the most important costs to our business?<br>
-      Which Key Resources are most expensive?<br>
-      Which Key Activities are most expensive?<br>
-      How does it coes to establish and run the business?</p>
+      <i class="material-icons">attach_money</i>
+      <b><a href="Financial_Plan.md">コスト構造</a></b>
+      <p>私たちのビジネスにとって最も重要なコストは何ですか？<br>
+      最も高価な主要リソースは何ですか？<br>
+      最も高価な主要活動は何ですか？<br>
+      ビジネスを設立し、運営するためのコストはどのように発生しますか？</p>
     </td>
     <td colspan="3">
-      <b><a href="Financial_Plan.md">Revenue Streams</a></b>
-      <p>For what value are customers willing to pay? <br>
-      How would they prefer to pay? <br>
-      What is the revenue structure?</p>
+      <i class="material-icons">attach_money</i>
+      <b><a href="Financial_Plan.md">収益源</a></b>
+      <p>顧客は何の価値に対して支払いをするのですか？ <br>
+      彼らはどのように支払いをしたいと考えていますか？ <br>
+      収益構造は何ですか？</p>
     </td>
   </tr>
 </table>
