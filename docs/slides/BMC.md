@@ -1,195 +1,110 @@
-:toc: left
-:toclevels: 5
-:sectnums:
-:stem:
-:source-highlighter: coderay
+# Business Model Canvas
 
-= AppTemplate
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet"></link>
 
-== 仕様
-
-== 設計
-
-=== TODOリスト
-* [ ] TODO
-* [x] [line-through]#TODO DONE#
-
-=== ユースケース図
-[plantuml]
-----
-left to right direction
-skinparam packageStyle rectangle
-actor customer
-actor clerk
-rectangle checkout {
-  customer -- (checkout)
-  (checkout) .> (payment) : include
-  (help) .> (checkout) : extends
-  (checkout) -- clerk
+<style>
+  body {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
 }
-----
 
-=== クラス図
-[plantuml]
-----
-class Car
-Driver - Car : drives >
-Car *- Wheel : have 4 >
-Car -- Person : < owns
-----
+.wrapper {
+  margin: auto;
+  max-width: 960px;
+  width: 100%;
+}
 
-=== シーケンス図
-[plantuml]
-----
-participant User
-User -> A: DoWork
-activate A
-A -> B: << createRequest >>
-activate B
-B -> C: DoWork
-activate C
-C --> B: WorkDone
-destroy C
-B --> A: RequestCreated
-deactivate B
-A -> User: Done
-deactivate A
-----
+.bmc {
+  display: grid;
+  grid: repeat(3, 200px) / repeat(10, 1fr);
+}
 
-=== 数式
+.bmc,
+.bmc > div {
+  border: 1px solid;
+  background: #fff;
+}
 
-https://asciidoctor.org/docs/user-manual/#activating-stem-support[Using Multiple Stem Interpreters^]
+.bmc > div {
+  display: grid;
+  position: relative;
+  gap: 10px;
+  grid-template-rows: 30px;
+  grid-auto-rows: 65px;
+  padding: 8px;
+}
 
-stem:[sqrt(4) = 2]
-
-Water (stem:[H_2O]) is a critical component.
-
-[stem]
-++++
-sqrt(4) = 2
-++++
-
-latexmath:[C = \alpha + \beta Y^{\gamma} + \epsilon]
-
-=== マインドマップ
-
-[plantuml]
-----
-@startmindmap
-title ラーメン店を開くべきか否かの条件
-
-* ラーメン店を開くべきか否か
-** 1 自分ラーメン店を開いて運営する能力があるか？
-** 2 市場はあるか？（人口が多く、十分な人通りがあるか）
-** 3 競合がいないか？
-@endmindmap
-----
-
-[plantuml]
-----
-@startmindmap
-title ラーメン店を開くかどうかのイッシュー・ツリー
-
-* ラーメン店を開くべきか否か
-** ラーメン店を開いて運営する能力があるか否か(company)
-*** 人がいるか
-*** お金があるか
-*** ラーメンをつくる技術をもっているか
-*** 材料や設備は手に入るか
-*** ...
-*** その他ラーメン店を運営する要件を満たせるか
-** 市場は十分に大きいか(customer)
-*** 人口はどれだけか
-*** 交通量は十分か
-*** ラーメンを外食する人が期待できる構成か
-** 有力な競争相手がいるか否か(competitor)
-*** 競合店が近くにあるか
-**** ある場所、距離は十分に遠いか
-**** 味・店構え・ロケーションなど自分に比べて優位か否か
-*** ラーメン以外の外食店があるか、どんな店か
-*** (競合がある場合)集客などかえって相乗効果を期待することはできないか
-@endmindmap
-----
-
-[plantuml]
-----
-@startuml
-object "売り上げが低下した" as A 
-object "売上を上げれるか" as B 
-
-A -> B
-@enduml
-----
-
-[plantuml]
-----
-@startmindmap
-title 足し算・引き算
-
-* 地域等で分ける
-** 札幌営業所の売上を上げられるか
-** 仙台営業所の売上を上げられるか
-** 北関東営業所の売上を上げられるか
-** 東京営業所の売上を上げられるか
-** ...
-** その他、売上を上げらる機会はないか
-*** 輸出
-*** OEM
-*** 他チャネル
-
-@endmindmap
-----
-
-[plantuml]
-----
-@startmindmap
-title 掛け算
+.bmc > div:nth-child(8),
+.bmc > div:nth-child(9) {
+  grid: 30px / repeat(5, 1fr);
+}
+.bmc > div:nth-child(8) h3,
+.bmc > div:nth-child(9) h3 {
+  grid-column: 1 / -1;
+}
 
 
-+ x
--- 店舗数
---- 増やせるか
----- 交通量・ロケーションの特徴
----- 人口密度・地域需要
----- 基本エコノミクスの構造など
-++ １店舗あたりの売上
-+++ 客数を増やせるか
-++++ キャンペーン・特売
-++++ 広告・ちらし
-++++ 店構え・その他
-+++ x
-+++ 客単価を増やせるか
-++++ 品揃え
-++++ レイアウト
-++++ セット販売
-++++ その他
+.bmc > div:nth-child(8) .note,
+.bmc > div:nth-child(9) .note {
+  grid-column: span 2;
+}
 
-@endmindmap
-----
+.bmc h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #5b5b5b;
+}
 
-[plantuml]
-----
-@startmindmap
-title 要素・枠組み
+.desc {
+  font-size: 9px;
+  display: flex;
+}
 
-* 売上が低下した理由の検討
-** 全国共通の要因はあるか 
-*** 全国共通の製品・価格・マーケティング施策等の工夫
-** 個店別の要因が大きいか
-*** 業績低下の大きい店への個別指導等
-** 季節性の課題が大きいか
-*** 冬に売れる商品の開発（冬に低下なら）
-** その他
+.note {
+  padding: 15px;
+  background: #F33C61;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px 1px rgba(0,0,0,.2);
+}
 
-@endmindmap
-----
+.note.green {
+  background: #79D12A;
+}
 
-=== ビジネスモデルキャンバス
+.bmc > div:nth-child(1),
+.bmc > div:nth-child(4),
+.bmc > div:nth-child(7) {
+  grid-area: span 2 / span 2;
+}
+
+.bmc > div:nth-child(2),
+.bmc > div:nth-child(5) {
+  grid-column: span 2;
+}
+
+.bmc > div:nth-child(3) {
+  grid-column: 3 / span 2;
+  grid-row: 2;
+}
+
+.bmc > div:nth-child(6) {
+  grid-column: 7 / span 2;
+  grid-row: 2;
+}
+
+.bmc > div:nth-child(8),
+.bmc > div:nth-child(9) {
+  grid-area: -2 / span 5;
+}
+</style>
 
 ## HTML
 
-+++
-<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet"></link>
 <table>
   <tr>
     <td rowspan="2">
@@ -265,96 +180,9 @@ title 要素・枠組み
     </td>
   </tr>
 </table>
-+++
 
 ## CSS
 
-+++
-<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet"></link>
-<style>
-body {
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-}
-.wrapper {
-  margin: auto;
-  max-width: 960px;
-  width: 100%;
-}
-.bmc {
-  display: grid;
-  grid: repeat(3, 200px) / repeat(10, 1fr);
-}
-.bmc,
-.bmc > div {
-  border: 1px solid;
-  background: #fff;
-}
-.bmc > div {
-  display: grid;
-  position: relative;
-  gap: 10px;
-  grid-template-rows: 30px;
-  grid-auto-rows: 65px;
-  padding: 8px;
-}
-.bmc > div:nth-child(8),
-.bmc > div:nth-child(9) {
-  grid: 30px / repeat(5, 1fr);
-}
-.bmc > div:nth-child(8) h3,
-.bmc > div:nth-child(9) h3 {
-  grid-column: 1 / -1;
-}
-.bmc > div:nth-child(8) .note,
-.bmc > div:nth-child(9) .note {
-  grid-column: span 2;
-}
-.bmc h3 {
-  margin: 0;
-  font-size: 14px;
-  color: #5b5b5b;
-}
-.desc {
-  font-size: 9px;
-  display: flex;
-}
-.note {
-  padding: 15px;
-  background: #F33C61;
-  color: #fff;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px 1px rgba(0,0,0,.2);
-}
-.note.green {
-  background: #79D12A;
-}
-.bmc > div:nth-child(1),
-.bmc > div:nth-child(4),
-.bmc > div:nth-child(7) {
-  grid-area: span 2 / span 2;
-}
-.bmc > div:nth-child(2),
-.bmc > div:nth-child(5) {
-  grid-column: span 2;
-}
-.bmc > div:nth-child(3) {
-  grid-column: 3 / span 2;
-  grid-row: 2;
-}
-.bmc > div:nth-child(6) {
-  grid-column: 7 / span 2;
-  grid-row: 2;
-}
-.bmc > div:nth-child(8),
-.bmc > div:nth-child(9) {
-  grid-area: -2 / span 5;
-}
-</style>
 <div class="wrapper">
   <h1>Business Model Canvas</h1>
   <div class="bmc">
@@ -444,10 +272,8 @@ body {
     </div>
   </div>
 </div>
-+++
 
-[plantuml]
-----
+```plantuml
 @startmindmap
 * Business Model Canvas
 -- 外部環境
@@ -470,9 +296,7 @@ body {
 **** 収益源
 **** コスト構造
 @endmindmap
-----
+```
 
-
-== 開発
-
-== 参照
+[Google Fonts](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:attach_money:FILL@0;wght@400;GRAD@0;opsz@23)
+[CodePen Home Business Model Canvas – CSS Grid](https://codepen.io/radioative/pen/NeqdKj)
