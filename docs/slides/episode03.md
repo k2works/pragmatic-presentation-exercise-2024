@@ -23,7 +23,8 @@ marp: true
 
 ネット通販の会社で業務システムの開発運用してます
 あと、売掛金・買掛金管理業務してます
-ぼっち・ざ・情シスです
+ぼっち情シスです
+クソザコトレーダーです
 
 ---
 
@@ -118,7 +119,125 @@ marp: true
 > — 論理的に考える方法 小野田博一（著）日本実業出版社
 
 
-##### 設計コンテキスト
+##### プログラマのコンテキスト
+
+XP(エクストリームプログラミング)
+
+JTC(ジャパニーズトラディショナルカンパニー)
+
+```plantuml
+@startuml
+
+component アジャイル {
+
+	component XP {
+		object "顧客" as z
+		object "プログラマ" as a
+		object "分析" as a_1
+		object "設計" as a_2
+		object "実装" as a_3
+		object "テスト" as a_4
+		object "運用" as a_5
+
+    z -- a
+		a_1 - a
+		a - a_2
+		a -- a_3
+		a -- a_4
+		a -- a_5
+	}
+
+	component スクラム {
+		object "顧客" as z_1
+		object "プログラマ" as d_1
+		object "スクラムマスター" as d_2
+		object "分析" as d_1_1
+		object "設計" as d_1_2
+		object "実装" as d_1_3
+		object "テスト" as d_1_4
+		object "運用" as d_1_5
+
+		z_1 -- d_1
+    z_1 -- d_2
+		d_1_1 - d_1
+		d_1 - d_1_2
+		d_1 -- d_1_3
+		d_1 -- d_1_4
+		d_1 -- d_1_5
+	}
+
+}
+
+
+@enduml
+```
+
+```plantuml
+@startuml
+
+component ウォーターフォール {
+
+	component JTC_A {
+		object "顧客" as z_1
+		object "プログラマ(PG)" as b_1
+		object "システムエンジニア(SE)" as b_2
+		object "システムコンサルタント" as b_3
+		object "インフラ" as b_4
+		object "プロジェクトマネージャー(PM)" as b_5
+		object "分析" as b_3_1
+		object "設計" as b_2_1
+		object "実装" as b_1_1
+		object "テスト" as b_1_2
+		object "運用" as b_4_1
+
+		z_1 - b_3
+		z_1 -- b_5
+ 
+		b_3 -- b_2
+		b_2 -- b_1
+		b_2 -- b_4
+
+		b_3 - b_3_1
+		b_2_1 - b_2
+		b_1 -- b_1_1
+		b_1 -- b_1_2
+		b_4 -- b_4_1
+
+	}
+
+	component JTC_B {
+		object "顧客" as z_2
+		object "システムエンジニア(SE/PG)" as c_2
+		object "システムコンサルタント" as c_3
+		object "インフラ" as c_4
+		object "プロジェクトマネージャー(PM)" as c_5
+		object "分析" as c_3_1
+		object "設計" as c_2_1
+		object "実装" as c_1_1
+		object "テスト" as c_1_2
+		object "運用" as c_4_1
+
+		z_2 - c_3
+		z_2 -- c_5
+
+		c_3 -- c_2
+		c_2 - c_4
+
+		c_3_1 - c_3
+		c_2_1 - c_2
+		c_2 -- c_1_1
+		c_2 -- c_1_2
+		c_4 -- c_4_1
+
+	}
+
+}
+
+
+@enduml
+```
+
+##### 設計のコンテキスト
 
 
 ```plantuml
@@ -187,16 +306,15 @@ component UI/UX {
 
 - 「要はバランス」-> 「コンテキストに依存する」
 - 「コンテキストに依存する」-> 暗黙・明示的前提に依存する -> ロジカルシンキング・クリティカルシンキングの適用
-- 「コンテキストに依存する」-> 言語化が難しい概念に依存する -> リファクタリング・ドメイン駆動設計の適用
 
 ##### 演繹
 
 ```plantuml
 @startuml
 
-title 論理の基本構造(演繹) 前提を疑ってかかる
+title 前提を疑ってかかる
 
-interface "論理" as A 
+interface "コンテキスト" as A
 
 class "一般論" as B
 
@@ -227,10 +345,10 @@ B -> C : 演繹
 ```plantuml
 @startuml
 
-title 論理の基本構造(演繹) 仮説をおいて考える
+title 仮説をおいて考える
 
 
-interface "論理" as A 
+interface "コンテキスト" as A 
 
 class "一般論" as B
 
@@ -263,9 +381,9 @@ B -> C : 演繹
 ```plantuml
 @startuml
 
-title 論理の基本構造(帰納) 同質のものを帰納して共通項を見いだす
+title 同質のものを帰納して共通項を見いだす
 
-interface "論理" as A 
+interface "コンテキスト" as A 
 
 class "一般論" as B
 
@@ -291,9 +409,9 @@ C "1" *-- "*" E
 ```plantuml
 @startuml
 
-title 論理の基本構造(帰納) 異質のものを組合わせて帰納する
+title 異質のものを組合わせて帰納する
 
-interface "論理" as A 
+interface "コンテキスト" as A 
 
 class "一般論" as B
 
@@ -319,10 +437,10 @@ C "1" *-- "*" E
 ```plantuml
 @startuml
 
-title 論理の基本構造(帰納) モレなく重複なく全てを網羅する
+title モレなく重複なく全てを網羅する
 
 
-interface "論理" as A 
+interface "コンテキスト" as A 
 
 class "一般論" as B
 
@@ -346,6 +464,38 @@ C -> B : 帰納
 C "1" *-- "*" D 
 C "1" *-- "*" E 
 C "0..1" o-- "*" F
+
+@enduml
+```
+
+- 「コンテキストに依存する」-> 言語化が難しい概念に依存する -> ドメイン駆動設計の適用
+
+```plantuml
+@startuml
+
+interface "コンテキスト" as A 
+
+class "解決領域" as B
+
+class "問題領域" as C {
+}
+
+class "コアドメイン" as D
+
+class "サポートサブドメイン" as E
+
+class "汎用サブドメイン" as F
+
+class "境界付けられたコンテキスト" as G
+
+A <|-- B
+A <|-- C
+C <-> B : ドメイン駆動設計
+
+C -- D 
+C -- E 
+C -- F
+B -- G
 
 @enduml
 ```
@@ -400,14 +550,14 @@ C "0..1" o-- "*" F
 >
 > [IT用語辞典 e-Words](https://e-words.jp/w/%E3%82%B3%E3%83%B3%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88.html)
 
-#### プログラミング
-
 > context
 >
 > The setting in which a word or statement appears that determines its meaning. Statements about a model can only be understood in a context.
 > (単語や文が現れる設定は、その意味を決定します。モデルについての発言は、コンテキスト内でのみ理解することができます。)
 >
 > Domain-Driven Design Reference
+
+#### プログラミング
 
 ##### Strategy Pattern
 
@@ -469,12 +619,12 @@ actor "開発者" as Dev
 rectangle "問題領域" {
 Biz --> (競争優位)
 }
-Dev -> (ドメイン)
+Biz -> (ドメイン)
 
 rectangle "解決領域" {
 Dev --> (分析・設計・実装)
 }
-(ドメイン) <- Biz
+(ドメイン) <- Dev
 
 (ドメイン) <.. (コンテキスト)  : <<明示・暗黙>>
 
@@ -495,6 +645,7 @@ Dev --> (分析・設計・実装)
 > bounded context
 >
 > A description of a boundary (typically a subsystem, or the work of a particular team) within which a particular model is defined and applicable.
+> (特定のモデルが定義され、適用される境界（通常はサブシステムや特定のチームの作業）の説明。)
 >
 > Domain-Driven Design Reference
 
@@ -513,6 +664,7 @@ Dev --> (分析・設計・実装)
 
 >
 > Bounded Context is a central pattern in Domain-Driven Design. It is the focus of DDD's strategic design section which is all about dealing with large models and teams. DDD deals with large models by dividing them into different Bounded Contexts and being explicit about their interrelationships.
+> (Bounded Contextは、ドメイン駆動設計の中心的なパターンです。これは、大規模なモデルとチームを扱うためのDDDの戦略設計セクションの焦点です。DDDは、大規模なモデルを異なるBounded Contextに分割し、それらの相互関係を明示することで対処します。)
 >
 > martin fowler
 
